@@ -1,0 +1,102 @@
+# Week 6 / Day 1 — Merge Sort (Recursion)
+
+## README.md
+
+### Title
+
+**Merge Sort — Recursion**
+
+### Overview
+
+This folder contains a recursive implementation of **Merge Sort**, an efficient, comparison-based, divide-and-conquer sorting algorithm. The goal of Day 1 is to: implement merge sort using recursion, explain the algorithm, and provide test cases and sample input/output suitable for a GitHub repository.
+
+### Problem Statement
+
+Given an array of integers, sort the array in non-decreasing order using Merge Sort (recursive approach).
+
+### Algorithm (High level)
+
+1. If the array has 0 or 1 element, it is already sorted — return.
+2. Split the array into two halves (left and right).
+3. Recursively sort both halves.
+4. Merge the two sorted halves into a single sorted array.
+
+### Time and Space Complexity
+
+* **Time complexity:** O(n log n) in all cases (best, average, worst).
+* **Space complexity:** O(n) auxiliary (for merging). Recursive call stack uses O(log n).
+
+```bash
+# compile
+g++ -std=c++17 code/merge_sort.cpp -o merge_sort
+# run
+./merge_sort < examples/input1.txt
+```
+
+### Sample I/O (examples/input1.txt)
+
+```
+8
+38 27 43 3 9 82 10 0
+```
+
+### Sample Output (examples/output1.txt)
+
+```
+0 3 9 10 27 38 43 82
+```
+
+### Notes
+
+* This implementation emphasizes clarity and comments to help understanding recursion and merging.
+* Optional: Add iterative/ bottom-up merge sort for comparison in future days.
+
+---
+```cpp
+  #include<iostream>
+#include<vector>
+using namespace std;
+void merge(vector<int> &arr,int st,int mid,int end){
+    vector<int> temp;
+    int i=st,j=mid+1;
+    while(i<=mid && j<=end){
+        if(arr[i]<=arr[j]){
+            temp.push_back(arr[i]);
+            i++;
+        }
+        else{
+            temp.push_back(arr[j]);
+            j++;
+        }
+    }
+    while(i<=mid){
+temp.push_back(arr[i]);
+            i++;
+    }
+    while(j<=end){
+        temp.push_back(arr[j]);
+            j++;
+    }
+    for(int idx=0;idx<temp.size();idx++){
+        arr[idx+st]=temp[idx];
+    }
+}
+void mergeSort(vector<int> &arr,int st,int end){
+   if(st<end){
+     int mid=st+(end-st)/2;
+    mergeSort(arr,st,mid-1);
+    mergeSort(arr,mid+1,end);
+    merge(arr,st,mid,end);
+   }
+}
+
+int main(){
+    vector<int> arr={12,31,35,8,32,17};
+    mergeSort(arr,0,arr.size()-1);
+    for(int val : arr){
+        cout<< val <<" ";
+    }
+    cout<< endl;
+    return 0;
+}
+
