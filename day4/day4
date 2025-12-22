@@ -1,0 +1,57 @@
+# Week 6 – Day 4: Object-Oriented Programming (OOPS) in C++
+
+## 📌 Overview
+Object-Oriented Programming (OOPS) is a programming paradigm based on the concept of "objects" that contain data and methods.  
+C++ supports OOPS to make programs more modular, reusable, and easier to maintain.
+
+---
+
+## 🧠 Key OOPS Concepts Covered
+
+1. Class & Object  
+2. Constructors  
+3. Encapsulation  
+4. Inheritance  
+5. Polymorphism  
+6. Abstraction  
+
+---
+
+## #include <iostream>
+#include <string>
+using namespace std;
+class Teacher
+{  public:
+    string name;
+    int age;
+     ~Teacher(){
+        cout<<"hello i am a parent destructer";
+    }
+
+};
+class student : public Teacher {
+    public:
+    int rollnu;
+
+    ~student(){
+        cout<<"hello i am a child destructer"<<endl;
+    }
+
+    void getinfo(){
+        cout<<"name :"<<name<<endl;
+        cout<<"age :"<<age<<endl;
+        cout<<"rollnu :"<<rollnu<<endl;
+    }
+};
+
+
+
+int main()
+{
+    student s1;
+    s1.name="jitu";
+    s1.age=18;
+    s1.rollnu=1056;
+    s1.getinfo();
+    return 0;
+}
