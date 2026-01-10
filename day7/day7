@@ -1,0 +1,59 @@
+LeetCode 206: Reverse Linked List
+📌 Problem Statement
+
+Given the head of a singly linked list, reverse the list and return the reversed list.
+
+🔗 LeetCode Link: https://leetcode.com/problems/reverse-linked-list/
+
+🧠 Approach (Iterative)
+
+We reverse the linked list by changing the direction of pointers one by one.
+
+Steps:
+
+Initialize three pointers:
+
+prev → initially NULL
+
+curr → starting from head
+
+nextNode → to store the next node
+
+Iterate through the list:
+
+Store curr->next in nextNode
+
+Reverse the link (curr->next = prev)
+
+Move prev and curr one step forward
+
+When traversal ends, prev becomes the new head.
+
+⏱ Time & Space Complexity
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
+💻 C++ Code
+  class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        ListNode* temp=head->next;
+        ListNode* prev=NULL;
+        while(head!=NULL){
+            head->next=prev;
+
+            prev=head;
+            head=temp;
+            if(temp!=NULL){
+                temp=temp->next;
+            }
+        }   
+        return prev;
+
+    }
+};
